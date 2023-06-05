@@ -195,7 +195,7 @@ namespace Contracts
             City = null;
             Authority = null;
 
-            MessageBox.Show("sdsdf.");
+           
         }
     }
 }
