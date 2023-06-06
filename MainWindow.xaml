@@ -85,7 +85,8 @@
         </ComboBox>
         <TextBox x:Name="ValuePrice" HorizontalAlignment="Left" Margin="295,129,0,0" Text="Введите сумму договора" VerticalAlignment="Top" Width="220" Height="34" TextChanged="TextBoxPrice" TextAlignment="Center" TextWrapping="Wrap"/>
         <Button Content="Очистить данные" HorizontalAlignment="Left" VerticalAlignment="Top" Height="39" Width="220" Click="ClearFields_Click" FontWeight="Bold" Background="#FF4A90E2" Foreground="White" Margin="293,229,0,0"/>
-       
+        <ComboBox HorizontalAlignment="Left" Margin="555,136,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+
 
     </Grid>
 </Window>

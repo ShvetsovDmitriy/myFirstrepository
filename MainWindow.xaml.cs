@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
+using RSDN;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
@@ -41,7 +42,7 @@ namespace Contracts
         public string? Sign { get; private set; }
         public string? City { get; private set; }
         public string? Authority { get; private set; }
-        public long Price { get; private set; }
+        public float Price { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -107,7 +108,7 @@ namespace Contracts
         private void TextBoxPrice(object sender, TextChangedEventArgs e)
         {
             TextBox priceTextBox = (TextBox)sender;
-            if (long.TryParse(priceTextBox.Text, out long priceValue))
+            if (float.TryParse(priceTextBox.Text, out float priceValue))
             {
                 Price = priceValue;
             }
@@ -145,8 +146,10 @@ namespace Contracts
                     {
                         var font = new Xceed.Document.NET.Font(fontName);
                         var fontColor = Color.FromName(colorFont);
-                        MyConverter myConverter = new MyConverter();
-                        string amountInWords = MyConverter.ConvertNumberToWords((long)Price);
+                        //MyConverter myConverter = new MyConverter();
+                        //string amountInWords = MyConverter.ConvertNumberToWords((long)Price);
+                        RusNumber rusNumber = new RusNumber();
+                        string amountInWords = RusCurrency.Str(Price);
                         // Replace values
                         ReplaceText(doc, "{date}", DateTime.Now.ToString("dd MMMM yyyy"), font, fontSize, fontColor);
                         ReplaceText(doc, "{sign}", Sign, font, fontSize, fontColor);
@@ -194,6 +197,14 @@ namespace Contracts
             Sign = null;
             City = null;
             Authority = null;
+
+            
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox1 = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox1.SelectedItem;
 
             
         }
